@@ -72,7 +72,6 @@ class SaveAGR(object):
             symstyle =  self.sym_map[line.get_marker()]
         else:
             symstyle = self.default_symstyle
-        print self.textscale
         symsize =  float(line.get_markersize())
         symedgecolor =  self.convert_color(line.get_markeredgecolor())
         symfacecolor =  self.convert_color(line.get_markerfacecolor())
@@ -142,7 +141,6 @@ class SaveAGR(object):
     def clear(self):
         for i in [self.header, self.custom_colors, self.lineformat, self.labels, self.data_part, self.footer]:
             i=[]
-            print i
 
     def saveagr(self, fname):
         self.fname = fname
