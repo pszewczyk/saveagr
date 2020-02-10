@@ -18,7 +18,8 @@ class SaveAGR(object):
         self.sym_map = {"None":"0", "o":"1", "s":"2", 
                         "d":"3", "D":"4", "2":"5", 
                         "3":"6", "4":"7","1":"8", 
-                        "+":"9","x":"10","*":"11"  }
+                        "+":"9","x":"10","*":"11", ".":"1"}
+        default_symstyle = "0"
         self.color_map = {"w":"0", "k":"1", "r":"2", "g":"3", "b":"4", "y":"5", "c":"9", "m":"10"  }
         self.scale_map = {"log":"Logarithmic", "linear":"Normal"}
         self._new_colors = []
@@ -66,7 +67,11 @@ class SaveAGR(object):
             self.lineformat.append("@ s%i line color %s"%(line_num, linecolor))
         
     def get_symbol_format(self, line, line_num=0):
-        symstyle =  self.sym_map[line.get_marker()]
+        marker = line.get_marker()
+        if marker in self.sym_map:
+            symstyle =  self.sym_map[line.get_marker()]
+        else:
+            symstyle = self.default_symstyle
         print self.textscale
         symsize =  float(line.get_markersize())
         symedgecolor =  self.convert_color(line.get_markeredgecolor())
