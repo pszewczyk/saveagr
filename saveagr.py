@@ -28,15 +28,13 @@ class SaveAGR(object):
         """
         Converts mpl color to grace color
         """
-        
         if color not in self.color_map.keys():
-            color = [int(i*255) for i in color]
             if color not in self._new_colors:
                 # 16 colors are already defined in grace, new colors start with number 16
                 color_num = str(len(self._new_colors)+16)
                 self._new_colors.append(color)
-                r, g, b, alpha = color
-                self.custom_colors.append("@map color %s to (%i, %i, %i), \"custom%s\""%(color_num, r, g, b, color_num))
+                r, g, b, a = matplotlib.colors.to_rgba(color)
+                self.custom_colors.append("@map color %s to (%i, %i, %i), \"custom%s\""%(color_num, 256*r, 256*g, 256*b, color_num))
             else:
                 color_num = self._new_colors.index(color)+16
         else:
