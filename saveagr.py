@@ -165,10 +165,7 @@ class SaveAGR(object):
                 if err.vertices.T[0,0] == err.vertices.T[0,1]:
                     x_pos[i] = err.vertices.T[0,0]
                 else:
-                    print err.vertices.T[0,0] == err.vertices.T[0,1]
-                    print y_err
-                    print N.diff(err.vertices.T[0])
-                    raise ValueError, "What??"
+                    raise ValueError()
             # now remove the line where the end of errorbars match with the y values, this are the end caps
             for line in all_lines:
                     y = line.get_ydata()
@@ -193,5 +190,5 @@ class SaveAGR(object):
         f.close()
 
 if __name__ == '__main__':
-    print "TODO: test/demo"
+    print("TODO: test/demo")
     pass
