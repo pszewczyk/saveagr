@@ -49,7 +49,7 @@ class SaveAGR(object):
         # TODO: errorbars
         x,y = line.get_data()
         self.data_part.append("@target G0.S%i"%line_num)
-        for i in xrange(len(x)):
+        for i in range(len(x)):
             self.data_part.append("%e %e"%(x[i],y[i]))
         self.data_part.append("&")
 
